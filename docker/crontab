@@ -1,0 +1,1 @@
+* * * * * root /usr/local/bin/php /var/www/html/cron/check-read-status.php >> /var/www/html/storage/logs/cron.log 2>&1
