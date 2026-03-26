@@ -119,4 +119,4 @@ Le serveur Vite demarre et redirige les appels `/api`, `/track`, `/phish` et `/a
 
 ## Licence
 
-Projet prive.
+BUSL 1.1
