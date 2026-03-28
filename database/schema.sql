@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS campaign_recipients (
     submitted_data        JSON NULL,
     user_agent            TEXT NULL,
     ip_address            VARCHAR(45) NULL,
+    graph_message_id      VARCHAR(255) NULL DEFAULT NULL,
     UNIQUE KEY uq_campaign_recipient (campaign_id, recipient_id),
     CONSTRAINT fk_cr_campaign  FOREIGN KEY (campaign_id)  REFERENCES campaigns(id)  ON DELETE CASCADE,
     CONSTRAINT fk_cr_recipient FOREIGN KEY (recipient_id) REFERENCES recipients(id) ON DELETE CASCADE

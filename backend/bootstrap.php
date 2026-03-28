@@ -11,7 +11,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 // ── Environment variables (.env at project root) ───────────────────
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+$dotenv->safeLoad();
 
 // ── Error reporting ────────────────────────────────────────────────
 if (isset($_ENV['APP_DEBUG']) && filter_var($_ENV['APP_DEBUG'], FILTER_VALIDATE_BOOLEAN)) {

@@ -22,7 +22,7 @@ use Ratchet\WebSocket\WsServer;
 
 // ── Load environment ────────────────────────────────────────────────────
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+$dotenv->safeLoad();
 
 // ── WebSocket handler ───────────────────────────────────────────────────
 

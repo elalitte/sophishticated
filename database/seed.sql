@@ -11,7 +11,7 @@ INSERT INTO users (username, email, password, role, is_active, must_change_passw
 VALUES (
     'admin',
     'admin@example.com',
-    '$2y$12$LJ3m4ys3Gm7NBVZ2YCuaOeSTKx3l3xZT8aFyNmLxPmRCIUxEKdWi2',
+    '$2y$12$dq3C9WEwk7fmien1fbHXh.BWdoh.y2sG7cyIkT8/ed0Xfq3b7rRFu',
     'admin',
     1,
     1,
