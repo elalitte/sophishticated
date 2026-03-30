@@ -198,7 +198,7 @@ class PhishingTracker implements MessageComponentInterface
 
 // ── Start server ────────────────────────────────────────────────────────
 
-$host = $_ENV['WEBSOCKET_HOST'] ?? '127.0.0.1';
+$host = $_ENV['WEBSOCKET_BIND'] ?? '0.0.0.0';
 $port = (int) ($_ENV['WEBSOCKET_PORT'] ?? 8081);
 
 echo "Starting WebSocket server on {$host}:{$port}...\n";

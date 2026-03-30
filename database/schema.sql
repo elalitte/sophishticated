@@ -118,6 +118,7 @@ CREATE TABLE IF NOT EXISTS campaigns (
     description     TEXT NULL,
     status          ENUM('draft', 'scheduled', 'running', 'paused', 'completed', 'cancelled') NOT NULL DEFAULT 'draft',
     email_template_id BIGINT UNSIGNED NOT NULL,
+    phishing_domain VARCHAR(255) NULL DEFAULT NULL,
     scheduled_at    DATETIME NULL DEFAULT NULL,
     started_at      DATETIME NULL DEFAULT NULL,
     completed_at    DATETIME NULL DEFAULT NULL,
@@ -131,12 +132,25 @@ CREATE TABLE IF NOT EXISTS campaigns (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
+-- Table: campaign_templates (junction)
+-- ============================================================
+CREATE TABLE IF NOT EXISTS campaign_templates (
+    id                BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    campaign_id       BIGINT UNSIGNED NOT NULL,
+    email_template_id BIGINT UNSIGNED NOT NULL,
+    UNIQUE KEY uq_campaign_template (campaign_id, email_template_id),
+    CONSTRAINT fk_ct_campaign  FOREIGN KEY (campaign_id)       REFERENCES campaigns(id)       ON DELETE CASCADE,
+    CONSTRAINT fk_ct_template  FOREIGN KEY (email_template_id) REFERENCES email_templates(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================
 -- Table: campaign_recipients
 -- ============================================================
 CREATE TABLE IF NOT EXISTS campaign_recipients (
     id                    BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     campaign_id           BIGINT UNSIGNED NOT NULL,
     recipient_id          BIGINT UNSIGNED NOT NULL,
+    email_template_id     BIGINT UNSIGNED NULL DEFAULT NULL,
     unique_token          CHAR(36) NOT NULL UNIQUE,
     mail_status           ENUM('pending', 'delivered', 'failed') NOT NULL DEFAULT 'pending',
     delivered_at          DATETIME NULL DEFAULT NULL,

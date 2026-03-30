@@ -6,7 +6,7 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
       MYSQL_DATABASE: ${DB_DATABASE:-sophishticated}
     volumes:
-      - db_data:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
       - ./database/seed.sql:/docker-entrypoint-initdb.d/02-seed.sql
     healthcheck:
@@ -58,5 +58,4 @@ services:
     restart: always
 
 volumes:
-  db_data:
   app_storage:
